@@ -1,0 +1,6 @@
+[submodule "buildSrc"]
+	path = buildSrc
+	url = git@github.com:li-lance/buildSrc.git
+[submodule "android-commons"]
+	path = android-commons
+	url = git@github.com:li-lance/android-commons.git
