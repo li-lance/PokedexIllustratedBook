@@ -4,3 +4,6 @@
 [submodule "android-commons"]
 	path = android-commons
 	url = git@github.com:li-lance/android-commons.git
+[submodule "dependencies"]
+	path = dependencies
+	url = git@github.com:li-lance/dependencies.git
