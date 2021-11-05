@@ -14,5 +14,6 @@ buildscript {
     maven { url = uri("https://jitpack.io") }
   }
 }
+include("dependencies")
 include("app")
 //include("android-commons")
