@@ -18,11 +18,13 @@ dependencies {
   implementation(Lib.materialComponents)
   implementation(Lib.Dagger.hilt)
   kapt(Lib.Dagger.hiltCompiler)
+  implementation(Lib.Dagger.composeNavigation)
   implementation(Lib.Retrofit.retrofit)
   implementation(Lib.Retrofit.retrofitGson)
   implementation(Lib.Retrofit.retrofitScalars)
   implementation(Lib.okHttp3LoggingInterceptor)
   implementation(Lib.KotlinX.coroutinesAndroid)
+  implementation(Lib.viewbindingpropertydelegate)
 
   debugImplementation(Lib.Chucker.debug)
   releaseImplementation(Lib.Chucker.release)

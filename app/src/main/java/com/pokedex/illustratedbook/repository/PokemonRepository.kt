@@ -32,7 +32,7 @@ class PokemonRepository @Inject constructor(val api: ApiService, @ApplicationCon
       override fun fetchFromLocal(): Flow<List<PokemonEntity>> = getPokemonList(context)
 
       override suspend fun fetchFromRemote(): Response<NamedApiResourceList> =
-        api.getPokedexList(offset, limit)
+        api.getPokemonList(offset, limit)
 
     }.asFlow()
   }

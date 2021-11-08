@@ -1,7 +1,7 @@
 package com.pokedex.illustratedbook.data
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PokemonEntity(val name:String) : Parcelable
+data class PokemonEntity(val name:String,val image:String) : Parcelable

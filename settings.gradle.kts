@@ -16,4 +16,4 @@ buildscript {
 }
 include("dependencies")
 include("app")
-//include("android-commons")
+include("android-commons")

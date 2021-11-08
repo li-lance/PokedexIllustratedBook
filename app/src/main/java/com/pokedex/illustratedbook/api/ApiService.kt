@@ -150,7 +150,7 @@ interface ApiService {
   ): Response<NamedApiResourceList>
 
   @GET("pokedex/")
-  suspend fun getPokedexList(
+  suspend fun getPokedex(
     @Query("offset") offset: Int,
     @Query("limit") limit: Int
   ): Response<NamedApiResourceList>

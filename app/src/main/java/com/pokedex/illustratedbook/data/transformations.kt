@@ -13,7 +13,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 private val Context.pokemonCache: DataStore<Preferences> by preferencesDataStore("pokemon")
-internal fun NamedApiResource.toPokemonEntity(): PokemonEntity = PokemonEntity(this.name)
+internal fun NamedApiResource.toPokemonEntity(): PokemonEntity = PokemonEntity(
+  this.name,
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+    url.split(
+      "/".toRegex()
+    ).dropLast(1).last()
+  }.png"
+)
+
 val POKEMON_LIST = stringPreferencesKey("pokemon_list")
 
 internal suspend fun savePokemonList(context: Context, list: MutableList<PokemonEntity>) {
