@@ -4,43 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import com.pokedex.illustratedbook.ui.theme.PokedexIllustratedBookTheme
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.pokedex.illustratedbook.naviation.Route
+import com.pokedex.illustratedbook.naviation.RouteConfigurations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-  val viewModel: MainViewModel by viewModels()
+  private val viewModel: MainViewModel by viewModels()
   override fun onCreate(savedInstanceState: Bundle?) {
+    installSplashScreen()
     super.onCreate(savedInstanceState)
-    lifecycleScope.launchWhenResumed {
-      viewModel.getPokemonList()
-    }
     setContent {
-      PokedexIllustratedBookTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(color = MaterialTheme.colors.background) {
-          Greeting("Android")
-        }
-      }
+      val navController = rememberNavController()
+      RouteConfigurations(navController = navController)
     }
-  }
-}
-
-@Composable
-fun Greeting(name: String) {
-  Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-  PokedexIllustratedBookTheme {
-    Greeting("Android")
   }
 }

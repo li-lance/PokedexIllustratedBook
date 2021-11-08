@@ -22,4 +22,10 @@
   <style name="Theme.PokedexIllustratedBook.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
   <style name="Theme.PokedexIllustratedBook.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+  <style name="PokemonSplash" parent="Theme.SplashScreen">
+    <item name="postSplashScreenTheme">@style/Theme.PokedexIllustratedBook</item>
+    <item name="windowSplashScreenBackground">@android:color/background_light</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>
+  </style>
 </resources>
