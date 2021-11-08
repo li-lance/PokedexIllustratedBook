@@ -10,6 +10,7 @@ android {
   }
 }
 dependencies {
+  implementation(project(":android-commons"))
   implementation(Lib.AndroidX.appcompat)
   implementation(Lib.AndroidX.coreSplash)
   implementation(Lib.AndroidX.fragmentKtx)
