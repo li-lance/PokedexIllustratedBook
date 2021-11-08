@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.pokedex.illustratedbook.PokemonListScreen
+import com.pokedex.illustratedbook.ui.screen.pokemon.list.PokemonListScreen
 import com.pokedex.illustratedbook.ui.screen.HomeScreen
 import com.pokedex.illustratedbook.ui.theme.PokedexIllustratedBookTheme
 
