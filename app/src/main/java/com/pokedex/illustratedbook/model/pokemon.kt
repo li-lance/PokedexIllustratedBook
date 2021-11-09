@@ -1,5 +1,7 @@
 package com.pokedex.illustratedbook.model
 
+import kotlinx.parcelize.Parcelize
+
 data class Ability(
     val id: Int,
     val name: String,
@@ -108,7 +110,6 @@ data class NaturePokeathlonStatAffect(
     val maxChange: Int,
     val nature: NamedApiResource
 )
-
 data class Pokemon(
     val id: Int,
     val name: String,

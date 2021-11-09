@@ -3,6 +3,7 @@ package com.pokedex.illustratedbook.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.pokedex.illustratedbook.BuildConfig
@@ -26,7 +27,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object Module {
-  const val BASE_URL = "https://pokeapi.co/api/v2/"
+  private const val BASE_URL = "https://pokeapi.co/api/v2/"
+
+  @Singleton
+  @Provides
+  fun provideGson(): Gson = GsonBuilder().create()
 
   @Singleton
   @Provides
@@ -45,7 +50,7 @@ object Module {
 
   @Singleton
   @Provides
-  fun provideRetrofit(client: OkHttpClient) =
+  fun provideRetrofit(client: OkHttpClient): Retrofit =
     Retrofit.Builder()
       .baseUrl(BASE_URL)
       .client(client)
