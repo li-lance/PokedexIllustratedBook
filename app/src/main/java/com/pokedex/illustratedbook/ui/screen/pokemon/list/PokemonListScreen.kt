@@ -1,7 +1,11 @@
 package com.pokedex.illustratedbook.ui.screen.pokemon.list
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,7 +13,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -25,7 +32,10 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import coil.Coil
 import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
+import coil.util.CoilUtils
 import com.fate.android.log.LoggerUtils
 import com.pokedex.illustratedbook.data.PokemonEntity
 import com.pokedex.illustratedbook.ui.screen.pokemon.PokemonViewModel
@@ -39,10 +49,11 @@ fun PokemonListScreen() {
   }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PokemonList(list: Flow<PagingData<PokemonEntity>>) {
   val lazyPagingItems: LazyPagingItems<PokemonEntity> = list.collectAsLazyPagingItems()
-  LazyColumn {
+  LazyVerticalGrid(cells = GridCells.Fixed(2)) {
     if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
       item {
         Text(
@@ -56,11 +67,12 @@ fun PokemonList(list: Flow<PagingData<PokemonEntity>>) {
         )
       }
     }
-    itemsIndexed(lazyPagingItems) { _, item ->
-      item?.let {
+    items(lazyPagingItems.itemCount) { index ->
+      lazyPagingItems[index]?.let {
         PokemonItem(pokemon = it)
       }
     }
+
     if (lazyPagingItems.loadState.append == LoadState.Loading) {
       item {
         CircularProgressIndicator(
@@ -75,18 +87,25 @@ fun PokemonList(list: Flow<PagingData<PokemonEntity>>) {
 
 @Composable
 fun PokemonItem(pokemon: PokemonEntity) {
-  Row(
+
+  Column(
     modifier = Modifier
-      .padding(start = 16.dp, top = 16.dp, end = 16.dp)
-      .fillMaxWidth(),
-    horizontalArrangement = Arrangement.SpaceBetween,
-    verticalAlignment = Alignment.CenterVertically
+      .padding(start = 16.dp, top = 16.dp, end = 16.dp),
   ) {
-    Text(text = pokemon.name)
     Image(
-      painter = rememberImagePainter(pokemon.image),
+      painter = rememberImagePainter(
+        pokemon.image,
+        builder = {
+          transformations(CircleCropTransformation())
+        }),
       contentDescription = null,
       modifier = Modifier.size(128.dp)
+    )
+    Text(
+      modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentWidth(Alignment.CenterHorizontally),
+      text = pokemon.name
     )
   }
 }
