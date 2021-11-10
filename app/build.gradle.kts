@@ -27,6 +27,7 @@ dependencies {
   implementation(Lib.KotlinX.coroutinesAndroid)
   implementation(Lib.viewbindingpropertydelegate)
   implementation(Lib.coilCompose)
+  implementation(Lib.palette)
 
   debugImplementation(Lib.Chucker.debug)
   releaseImplementation(Lib.Chucker.release)
